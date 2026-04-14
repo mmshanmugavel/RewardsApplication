@@ -1,5 +1,6 @@
-package com.rewards.model;
+package com.charter.rewardPoints.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import lombok.Data;
@@ -8,10 +9,10 @@ import lombok.Data;
 public class Transaction {
 
 	private String customerId;
-	private Double txnAmount;
+	private BigDecimal txnAmount;
 	private LocalDate txnDate;
 	
-	public Transaction(String id, double amount, LocalDate date) { 
+	public Transaction(String id, BigDecimal amount, LocalDate date) { 
 		this.customerId = id;
 		this.txnAmount = amount;
 		this.txnDate = date;

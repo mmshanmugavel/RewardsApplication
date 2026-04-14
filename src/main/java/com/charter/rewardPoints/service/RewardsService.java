@@ -1,8 +1,8 @@
-package com.rewards.service;
+package com.charter.rewardPoints.service;
 
 import java.time.LocalDate;
 
-import com.rewards.model.RewardsResponse;
+import com.charter.rewardPoints.dto.RewardsResponse;
 
 public interface RewardsService {
 

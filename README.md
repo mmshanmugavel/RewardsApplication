@@ -3,6 +3,55 @@
 ## Overview
 Retail reward calculation API built using Spring Boot and Java
 
+## Project Folder Structure
+
+rewards-api
+│
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com.charter.rewardPoints
+│   │   │               │
+│   │   │               ├── controller/
+│   │   │               │   └── RewardController.java
+│   │   │               │
+│   │   │               ├── service/
+│   │   │               │   └── RewardsService.java
+│	│	│				│	└── RewardsServiceImpl.java
+│   │   │               │
+│   │   │               ├── repository/
+│   │   │               │   └── TransactionRepository.java
+│   │   │               │
+│   │   │               ├── dto/
+│   │   │               │   └── RewardsResponse.java
+│	│	│				│	└── Transaction.java
+│   │   │               │
+│   │   │               └── exception/
+│   │   │                   └── GlobalExceptionHandler.java
+│   │   │                   └── FutureDateException.java
+│   │   │                   └── GenericException.java
+│   │   │                   └── MissingDateException.java
+│   │   │                   └── TransactionNotFoundException.java
+│   │   │
+│   │   └── resources
+│   │       ├── application.properties
+│   │       ├── static/
+│   │       ├── templates/
+│   │
+│   └── test
+│       └── java
+│           └── com.charter.rewardPoints
+│                │	└── RewardsApplicationTests.java
+│                │
+│                ├── controller/
+│      	         │   └── RewardsControllerTest.java
+│                ├── service/
+│				 │		└── RewardsIntegrationTest.java
+│				 │		└── RewardsServiceTest.java
+│
+├── pom.xml
+└── README.md
+
 
 ## Rules
 
@@ -12,14 +61,44 @@ Retail reward calculation API built using Spring Boot and Java
 
 ## API
 
-GET http://localhost:8080/RewardsApplication/api/rewards/C001?fromDate=2026-01-01&toDate=2026-03-31
+GET /api/rewards/calculate?customerId=C001&fromDate=2026-01-01&toDate=2026-03-31
 
-OUTPUT: e.g {"customerId":"C001","monthlyRewards":{"2026-03":70,"2026-02":146,"2026-01":305},"totalRewards":521}
+SUCCESS RESPONSE - Sample JSON
+ {
+ 	"customerId":"C001",
+ 	"monthlyRewards":{
+ 		"2026-03":70,
+ 		"2026-02":146,
+ 		"2026-01":305
+ 	},
+ 	"totalRewards":521
+ }
+ 
+ERROR RESPONSE
+
+status code: 400, From date and To date must be provided
+status code: 400, From date or To date can not be a future date
+status code: 400, No transactions found for customer 123
+ 
+## Steps to Run
+
+# Clone repository
+git clone https://github.com/mmshanmugavel/RewardsApplication.git
+
+# Navigate to project
+cd RewardsApplication
+
+# Build project
+mvn  clean install
+
+# Run application
+mvn spring-boot:run
 
 ## Features
 
 - RESTful API
 - Dynamic customer Id & date range
+- Validations
 - Clean architecture
 - Unit tests
 - Exception handling

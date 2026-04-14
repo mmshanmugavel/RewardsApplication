@@ -1,4 +1,4 @@
-package com.rewards;
+package com.charter.rewardPoints;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
