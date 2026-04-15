@@ -40,6 +40,7 @@ Retail reward calculation API built using Spring Boot and Java
             - RewardsControllerTest.java
           - service
             - RewardsServiceTest.java
+  - Documents
   - pom.xml
   - README.md
 
