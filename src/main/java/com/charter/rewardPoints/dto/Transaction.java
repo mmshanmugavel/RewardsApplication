@@ -1,8 +1,7 @@
-package com.charter.rewardPoints.dto;
+package com.charter.rewardpoints.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-
 import lombok.Data;
 
 @Data

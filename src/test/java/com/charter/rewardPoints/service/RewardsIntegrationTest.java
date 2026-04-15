@@ -1,13 +1,11 @@
-package com.charter.rewardPoints.service;
+package com.charter.rewardpoints.service;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.ResponseEntity;
-
 import static org.assertj.core.api.Assertions.assertThat;
-
 import java.time.LocalDate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -18,9 +16,9 @@ public class RewardsIntegrationTest {
 
     @Test
     void testCalculateRewards_Integration() {
-        String url = "/api/rewards/calculate?customerId=123&fromDate=" +
-                LocalDate.now().minusMonths(1) + "&toDate=" + LocalDate.now();
+        String url = "/api/rewards/calculate?fromDate=" +
+                LocalDate.now().minusMonths(3) + "&toDate=" + LocalDate.now();
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        assertThat(response.getStatusCode().is2xxSuccessful()).isFalse();
+        assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
     }
 }

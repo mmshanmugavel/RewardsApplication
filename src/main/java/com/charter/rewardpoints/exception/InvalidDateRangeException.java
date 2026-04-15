@@ -1,10 +1,10 @@
 package com.charter.rewardpoints.exception;
 
-public class FutureDateException extends RuntimeException{
-	
+public class InvalidDateRangeException extends RuntimeException {
+
 	private static final long serialVersionUID = 1L;
 
-	public FutureDateException(String message) {
+	public InvalidDateRangeException(String message) {
 		super(message);
 	}
 

@@ -1,11 +1,11 @@
-package com.charter.rewardPoints.service;
+package com.charter.rewardpoints.service;
 
 import java.time.LocalDate;
-
-import com.charter.rewardPoints.dto.RewardsResponse;
+import java.util.List;
+import com.charter.rewardpoints.dto.RewardsResponse;
 
 public interface RewardsService {
 
-	RewardsResponse calculateRewards(String customerId, LocalDate fromDate, LocalDate toDate);
+	List<RewardsResponse> calculateRewards(LocalDate fromDate, LocalDate toDate);
 
 }

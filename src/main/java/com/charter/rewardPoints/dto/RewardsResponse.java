@@ -1,24 +1,24 @@
-package com.charter.rewardPoints.dto;
+package com.charter.rewardpoints.dto;
 
-import java.time.YearMonth;
 import java.util.Map;
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class RewardsResponse {
 
 	private String customerId;
-	private Map<YearMonth, Integer> monthlyRewards;
+	private Map<String, Integer> monthlyRewards;
 	private Integer totalRewards;
-	private String errorMessage;
-	private Integer errorCode;
 	
-	public static RewardsResponse of(String customerId, Map<YearMonth, Integer> monthlyRewards, int totalRewards) {
-		RewardsResponse res = new RewardsResponse();
-		res.customerId = customerId;
-		res.monthlyRewards = monthlyRewards;
-		res.totalRewards = totalRewards;
-		return res;
+	public RewardsResponse(String customerId, Map<String, Integer> monthlyRewards, int totalRewards) {
+		this.customerId = customerId;
+		this.monthlyRewards = monthlyRewards;
+		this.totalRewards = totalRewards;
 	}
 }

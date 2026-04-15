@@ -8,7 +8,7 @@
 		<version>3.4.1</version>
 		<relativePath/>
 	</parent>
-	<groupId>com.charter.rewardPoints</groupId>
+	<groupId>com.charter.rewardpoints</groupId>
 	<artifactId>RewardsApplication</artifactId>
 	<version>0.0.1</version>
 	<name>RewardsApplication</name>

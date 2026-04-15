@@ -1,4 +1,4 @@
-package com.charter.rewardPoints.exception;
+package com.charter.rewardpoints.exception;
 
 public class TransactionNotFoundException extends RuntimeException{
 

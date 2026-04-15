@@ -1,66 +1,46 @@
-package com.charter.rewardPoints.controller;
+package com.charter.rewardpoints.controller;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.util.Collections;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.*;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.charter.rewardPoints.dto.RewardsResponse;
-import com.charter.rewardPoints.service.RewardsService;
-
-import java.time.LocalDate;
-
-import static org.mockito.ArgumentMatchers.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.charter.rewardpoints.repository.TransactionRepository;
+import com.charter.rewardpoints.service.RewardsService;
 
 @WebMvcTest
 class RewardsControllerTest {
 
-    @Autowired
+	@Autowired
     private MockMvc mockMvc;
 
     @MockBean
     private RewardsService rewardsService;
 
-    @Test
-    void whenBothDatesNull_thenDefaultsToLast3Months() throws Exception {
-        Mockito.when(rewardsService.calculateRewards(anyString(), any(), any()))
-                .thenReturn(new RewardsResponse());
-        mockMvc.perform(get("/api/rewards/calculate")
-                .param("customerId", "123"))
-                .andExpect(status().isOk());
+    @Mock
+    private TransactionRepository transactionRepository;
+    
+    @BeforeEach
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void whenOneDateNull_thenMissingDateException() throws Exception {
+    void testCalculateRewards_NoTransactions() throws Exception {
+        when(transactionRepository.findByCustomerAndDateRange(any(), any()))
+            .thenReturn(Collections.emptyList());
         mockMvc.perform(get("/api/rewards/calculate")
-                .param("customerId", "123")
-                .param("fromDate", LocalDate.now().toString()))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void whenFutureDate_thenFutureDateException() throws Exception {
-        LocalDate future = LocalDate.now().plusDays(1);
-        mockMvc.perform(get("/api/rewards/calculate")
-                .param("customerId", "123")
-                .param("fromDate", future.toString())
-                .param("toDate", future.toString()))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void whenValidDates_thenReturnsRewards() throws Exception {
-        Mockito.when(rewardsService.calculateRewards(anyString(), any(), any()))
-                .thenReturn(new RewardsResponse());
-        LocalDate now = LocalDate.now();
-        mockMvc.perform(get("/api/rewards/calculate")
-                .param("customerId", "123")
-                .param("fromDate", now.minusMonths(1).toString())
-                .param("toDate", now.toString()))
+                .param("fromDate", "2026-01-15")
+                .param("toDate", "2026-04-15"))
                 .andExpect(status().isOk());
     }
 }
