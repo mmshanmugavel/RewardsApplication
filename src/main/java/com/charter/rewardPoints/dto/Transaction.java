@@ -10,8 +10,8 @@ public class Transaction {
 	private String customerId;
 	private BigDecimal txnAmount;
 	private LocalDate txnDate;
-	
-	public Transaction(String id, BigDecimal amount, LocalDate date) { 
+
+	public Transaction(String id, BigDecimal amount, LocalDate date) {
 		this.customerId = id;
 		this.txnAmount = amount;
 		this.txnDate = date;

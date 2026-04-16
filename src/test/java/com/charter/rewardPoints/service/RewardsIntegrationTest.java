@@ -11,14 +11,13 @@ import java.time.LocalDate;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RewardsIntegrationTest {
 
-    @Autowired
-    private TestRestTemplate restTemplate;
+	@Autowired
+	private TestRestTemplate restTemplate;
 
-    @Test
-    void testCalculateRewards_Integration() {
-        String url = "/api/rewards/calculate?fromDate=" +
-                LocalDate.now().minusMonths(3) + "&toDate=" + LocalDate.now();
-        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
-        assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
-    }
+	@Test
+	void testCalculateRewards_Integration() {
+		String url = "/api/rewards/calculate?fromDate=" + LocalDate.now().minusMonths(3) + "&toDate=" + LocalDate.now();
+		ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+		assertThat(response.getStatusCode().is2xxSuccessful()).isTrue();
+	}
 }

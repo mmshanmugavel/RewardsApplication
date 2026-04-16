@@ -11,7 +11,7 @@ public class APIErrorResponse {
 	private String message;
 	private LocalDateTime timestamp;
 	private String path;
-	
+
 	public APIErrorResponse(int status, String error, String message, LocalDateTime timestamp, String path) {
 		super();
 		this.status = status;
@@ -20,5 +20,5 @@ public class APIErrorResponse {
 		this.timestamp = timestamp;
 		this.path = path;
 	}
-	
+
 }

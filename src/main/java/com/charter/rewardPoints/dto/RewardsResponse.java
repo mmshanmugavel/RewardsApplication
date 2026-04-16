@@ -15,10 +15,5 @@ public class RewardsResponse {
 	private String customerId;
 	private Map<String, Integer> monthlyRewards;
 	private Integer totalRewards;
-	
-	public RewardsResponse(String customerId, Map<String, Integer> monthlyRewards, int totalRewards) {
-		this.customerId = customerId;
-		this.monthlyRewards = monthlyRewards;
-		this.totalRewards = totalRewards;
-	}
+
 }
